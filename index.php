@@ -61,11 +61,6 @@ require 'cek.php';
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Barang Keluar
                         </a>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Pages
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
@@ -81,20 +76,7 @@ require 'cek.php';
                                 </div>
                             </nav>
                         </div>
-                        <div class="sb-sidenav-menu-heading">Addons</div>
-                        <a class="nav-link" href="charts.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Charts
-                        </a>
-                        <a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Tables
-                        </a>
                     </div>
-                </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
-                    Start Bootstrap
                 </div>
             </nav>
         </div>
@@ -118,6 +100,7 @@ require 'cek.php';
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Kode Barang</th>
                                             <th>Nama Barang</th>
                                             <th>Deskripsi</th>
                                             <th>Stok Barang</th>
@@ -130,6 +113,7 @@ require 'cek.php';
                                         $ambildatanya = mysqli_query($conn, "select * from stock");
                                         $i = 1;
                                         while ($data = mysqli_fetch_array($ambildatanya)) {
+                                            $kodebarang = $data['kodebarang'];
                                             $namabarang = $data['namabarang'];
                                             $deskripsi = $data['deskripsi'];
                                             $stock = $data['stock'];
@@ -137,6 +121,7 @@ require 'cek.php';
                                         ?>
                                             <tr>
                                                 <td><?= $i++; ?></td>
+                                                <td><?= $kodebarang; ?></td>
                                                 <td><?= $namabarang; ?></td>
                                                 <td><?= $deskripsi; ?></td>
                                                 <td><?= $stock; ?></td>
@@ -164,6 +149,8 @@ require 'cek.php';
                                                         <!-- Modal body -->
                                                         <form method="post">
                                                             <div class="modal-body">
+                                                                <input type="text" name="kodebarang" value="<?= $kodebarang; ?>" class="form-control" required>
+                                                                <br>
                                                                 <input type="text" name="namabarang" value="<?= $namabarang; ?>" class="form-control" required>
                                                                 <br>
                                                                 <input type="text" name="deskripsi" value="<?= $deskripsi; ?>" class="form-control" required>
@@ -213,7 +200,7 @@ require 'cek.php';
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                        <div class="text-muted">BBMKG Balai II Tangerang Selatan</div>
                         <div>
                             <a href="#">Privacy Policy</a>
                             &middot;
@@ -248,6 +235,8 @@ require 'cek.php';
             <!-- Modal body -->
             <form method="post">
                 <div class="modal-body">
+                    <input type="text" name="kodebarang" placeholder="Kode Barang" class="form-control" required>
+                    <br>
                     <input type="text" name="namabarang" placeholder="Nama Barang" class="form-control" required>
                     <br>
                     <input type="text" name="deskripsi" placeholder="Deskripsi Barang" class="form-control" required>

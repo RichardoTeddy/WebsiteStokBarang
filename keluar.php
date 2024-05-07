@@ -61,63 +61,8 @@ require 'cek.php';
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Barang Keluar
                         </a>
-                        <div class="sb-sidenav-menu-heading">Interface</div>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Layouts
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                                <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-                            </nav>
-                        </div>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Pages
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                    Authentication
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="login.html">Login</a>
-                                        <a class="nav-link" href="register.html">Register</a>
-                                        <a class="nav-link" href="password.html">Forgot Password</a>
-                                    </nav>
-                                </div>
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                    Error
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="401.html">401 Page</a>
-                                        <a class="nav-link" href="404.html">404 Page</a>
-                                        <a class="nav-link" href="500.html">500 Page</a>
-                                    </nav>
-                                </div>
-                            </nav>
-                        </div>
-                        <div class="sb-sidenav-menu-heading">Addons</div>
-                        <a class="nav-link" href="charts.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Charts
-                        </a>
-                        <a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Tables
-                        </a>
+
                     </div>
-                </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
-                    Start Bootstrap
                 </div>
             </nav>
         </div>
@@ -141,8 +86,10 @@ require 'cek.php';
                                     <thead>
                                         <tr>
                                             <th>Tanggal</th>
+                                            <th>Kode Barang </th>
                                             <th>Nama Barang</th>
                                             <th>Jumlah</th>
+                                            <th>Posisi Barang</th>
                                             <th>Penerima</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -155,14 +102,18 @@ require 'cek.php';
                                             $idk = $data['idkeluar'];
                                             $idb = $data['idbarang'];
                                             $tanggal = $data['tanggal'];
+                                            $kodebarang = $data['kodebarang'];
                                             $namabarang = $data['namabarang'];
                                             $qty = $data['qty'];
+                                            $posisibarang = $data['posisibarang'];
                                             $penerima = $data['penerima'];
                                         ?>
                                             <tr>
                                                 <td><?= $tanggal; ?></td>
+                                                <td><?= $kodebarang; ?></td>
                                                 <td><?= $namabarang; ?></td>
                                                 <td><?= $qty; ?></td>
+                                                <td><?= $posisibarang; ?></td>
                                                 <td><?= $penerima; ?></td>
                                                 <td>
                                                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?= $idk; ?>">
@@ -239,7 +190,7 @@ require 'cek.php';
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                        <div class="text-muted">BBMKG Balai II Tangerang Selatan</div>
                         <div>
                             <a href="#">Privacy Policy</a>
                             &middot;
@@ -277,11 +228,12 @@ require 'cek.php';
                         <?php
                         $ambildata = mysqli_query($conn, "select * from stock");
                         while ($fetcharray = mysqli_fetch_array($ambildata)) {
+                            $kodebarang = $fetcharray['kodebarang'];
                             $namabarang = $fetcharray['namabarang'];
                             $idbarang = $fetcharray['idbarang'];
                         ?>
 
-                            <option value="<?= $idbarang; ?>"><?= $namabarang; ?>
+                            <option value="<?= $idbarang; ?>"><?= $kodebarang; ?> <?= $namabarang; ?>
                             </option>
                         <?php
                         }
@@ -291,6 +243,8 @@ require 'cek.php';
                     <input type="num" name="qty" placeholder="Quantity" class="form-control" required>
                     <br>
                     <input type="text" name="penerima" placeholder="penerima" class="form-control" required>
+                    <br>
+                    <input type="text" name="posisibarang" placeholder="Posisi Barang" class="form-control" required>
                     <br>
                     <button type="submit" class="btn btn-primary" name="addbarangkeluar">Submit</button>
                 </div>
