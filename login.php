@@ -61,8 +61,9 @@ if (!isset($_SESSION['log'])) {
                                             <input class="form-control py-4" name="password" id="inputPassword" type="password" placeholder="Enter password" />
                                         </div>
 
-                                        <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                        <div class="form-group  align-items-center justify-content-between mt-2 mb-2">
                                             <button class="btn btn-primary" name="login">Login</button>
+                                            <button class="btn btn-secondary" name="login">Sign Up</button>
                                         </div>
                                     </form>
                                 </div>
